@@ -2,11 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const connectDb = require('./database');
-const app = express();
+const router = require('./Routes/taskRoute');
 
-app.get("/", (req, res) => {
-  res.status(200).json("We are live and running");
-});
+const app = express();
+app.use(express.json());
+app.use('/api/v1/tasks', router);
+
 
 const {PORT, DATABAZE_URL} = process.env;
 
