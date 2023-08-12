@@ -8,14 +8,19 @@ app.get("/", (req, res) => {
   res.status(200).json("We are live and running");
 });
 
-// mongoose.connect(process.env.DATABAZE_URL)
-//   .then(() => {
-//     app.listen(process.env.PORT, () => {
-//       console.log("The project is live on port 3000");
-//     });
-//   })
-//   .catch((error) => {
-//     throw new Error(error);
-//   })
+const {PORT, DATABAZE_URL} = process.env;
 
 
+
+const connect = async (url) => {
+  try {
+    await connectDb(url)
+    app.listen(PORT, () => {
+      console.log('We are running')
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+connect(DATABAZE_URL);
