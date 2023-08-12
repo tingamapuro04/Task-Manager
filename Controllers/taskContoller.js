@@ -1,5 +1,14 @@
 const Task = require('../Models/taskModel');
 
+const getTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find({})
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 const postTask = async (req, res) => {
   try {
     const { body } = req;
@@ -11,5 +20,6 @@ const postTask = async (req, res) => {
 }
 
 module.exports = {
-  postTask
+  postTask,
+  getTasks
 }
