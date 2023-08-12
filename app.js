@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 
 mongoose.connect(process.env.DATABAZE_URL)
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("The project is live on port 3000");
     });
   })
