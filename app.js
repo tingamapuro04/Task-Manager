@@ -3,10 +3,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const connectDb = require('./database');
 const router = require('./Routes/taskRoute');
+const notFound = require("./middleware/404");
 
 const app = express();
 app.use(express.json());
 app.use('/api/v1/tasks', router);
+app.use(notFound)
 
 
 const {PORT, DATABAZE_URL} = process.env;
